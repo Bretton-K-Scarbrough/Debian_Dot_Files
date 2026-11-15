@@ -1,0 +1,10 @@
+configuration {
+    modes: [ combi ];
+    combi-modes: [ window, drun ];
+    show-icons: true;
+
+    combi-hide-mode-prefix: true;
+    drun-display-format: "{name}";
+}
+
+@theme "~/.config/rofi/tokyo-night.rasi"

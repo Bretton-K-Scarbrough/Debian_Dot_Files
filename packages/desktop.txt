@@ -1,0 +1,56 @@
+# X11 display system
+xorg
+xinit
+
+# Window manager and keyboard shortcuts
+bspwm
+sxhkd
+
+# Terminal and application launcher
+kitty
+rofi
+
+# Compositor and wallpaper
+picom
+feh
+
+# File manager
+thunar
+
+# Appearance and theming
+lxappearance
+papirus-icon-theme
+fonts-noto-color-emoji
+
+# Display configuration
+arandr
+x11-xserver-utils
+
+# Screenshots and clipboard
+maim
+xclip
+xsel
+
+# Desktop notifications
+dunst
+
+# Audio services
+pipewire
+pipewire-pulse
+pipewire-alsa
+pipewire-jack
+wireplumber
+pavucontrol
+alsa-utils
+
+# Desktop applications
+firefox-esr
+
+# Bluetooth
+bluez
+bluetooth
+blueman
+rfkill
+
+# Bluetooth audio support
+libspa-0.2-bluetooth

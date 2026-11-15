@@ -1,0 +1,37 @@
+# Version control and downloads
+git
+gh
+curl
+wget
+ca-certificates
+
+# Shell and terminal utilities
+zsh
+bash-completion
+stow
+
+# File management and archives
+unzip
+zip
+tar
+rsync
+tree
+
+# Search and navigation
+ripgrep
+fd-find
+fzf
+
+# System administration
+sudo
+htop
+btop
+lsof
+pciutils
+usbutils
+
+# Fonts
+fontconfig
+
+# Network diagnostics
+openssh-client
