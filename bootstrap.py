@@ -6,6 +6,7 @@ import enum
 import os
 import shlex
 import subprocess
+import pwd
 from pathlib import Path
 from pprint import pprint
 from sys import path_importer_cache
@@ -57,6 +58,54 @@ def check_system() -> None:
 
     if os.geteuid() == 0:
         raise RuntimeError("Do not run this script as root.")
+
+
+def install_oh_my_zsh(dry_run: bool = True) -> None:
+    """
+    Install Oh My Zsh without modifying .zshrc.
+    """
+
+    destination = Path.home() / ".oh-my-zsh"
+
+    if destination.is_dir():
+        print("Oh My Zsh is already installed.")
+        return
+
+    command = [
+        "git",
+        "clone",
+        "--depth=1",
+        "https://github.com/ohmyzsh/ohmyzsh.git",
+        str(destination),
+    ]
+
+    run(command, dry_run=dry_run)
+
+
+def configure_zsh(dry_run: bool = True) -> None:
+    """Set Zsh as the user's default login shell."""
+
+    zsh = shutil.which("zsh")
+
+    if zsh is None:
+        if dry_run:
+            print("Zsh is not installed yet; would configure it.")
+            return
+        raise RuntimeError("Zsh is not installed.")
+
+    current_shell = pwd.getpwuid(os.getuid()).pw_shell
+
+    if current_shell == zsh:
+        print("Zsh is already the default login shell.")
+        return
+
+    command = [
+        "chsh",
+        "-s",
+        zsh,
+    ]
+
+    run(command, dry_run=dry_run)
 
 
 def load_packages() -> list[str]:
@@ -215,6 +264,7 @@ if __name__ == "__main__":
 
     install_packages(packages, dry_run=dry_run)
     install_fonts(dry_run=dry_run)
+    install_oh_my_zsh(dry_run)
     deploy_dotfiles(modules, dry_run=dry_run)
     configure_bluetooth(dry_run)
 

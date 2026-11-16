@@ -140,8 +140,6 @@ zle -N zle-line-init
 # export CONDA_CHANGES1=false
 # conda activate research-env
 
-tailscale up
-
 export PATH="$HOME/Documents/Scripts/bash:$PATH"
 
 manim-env() {
