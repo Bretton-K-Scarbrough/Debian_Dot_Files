@@ -1,4 +1,5 @@
 # Version control and downloads
+flatpak
 zsh
 git
 gh

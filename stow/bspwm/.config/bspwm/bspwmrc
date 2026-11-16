@@ -4,7 +4,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 pgrep -x picom > /dev/null || picom &
 
 
-feh --bg-fill ~/Pictures/Wallpapers/sakura.jpg &
+feh --bg-fill "$HOME/.local/share/wallpapers/Tree_Wallpaper.jpg" &
 
 # Set left and right monitors correctly
 xrandr --output DP-5 --right-of HDMI-0

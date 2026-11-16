@@ -4,6 +4,7 @@ cmake
 ninja-build
 pkg-config
 clang
+gettext
 gdb
 
 # Python

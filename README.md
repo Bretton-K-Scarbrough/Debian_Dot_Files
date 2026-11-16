@@ -27,3 +27,4 @@ What major software do I use?
     - pipewire?
 	- Rofi
     - bspwm
+

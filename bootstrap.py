@@ -10,6 +10,9 @@ import pwd
 from pathlib import Path
 from pprint import pprint
 from sys import path_importer_cache
+from installers.neovim import install_neovim
+from installers.flatpak import install_flatpaks
+
 
 ROOT = Path(__file__).resolve().parent
 STOW_DIR = ROOT / "stow"
@@ -265,6 +268,9 @@ if __name__ == "__main__":
     install_packages(packages, dry_run=dry_run)
     install_fonts(dry_run=dry_run)
     install_oh_my_zsh(dry_run)
+    install_neovim(dry_run)
+    install_flatpaks(dry_run)
+
     deploy_dotfiles(modules, dry_run=dry_run)
     configure_bluetooth(dry_run)
 

@@ -278,3 +278,11 @@ alt + shift + q
 super + Tab
     bspc node -f last
 
+# ------------------------------------------------------------
+# Lock and Suspend
+# ------------------------------------------------------------
+ctrl + shift + l
+    i3lock -c 1a1b26
+
+ctrl + shift + s 
+    systemctl suspend
