@@ -74,7 +74,7 @@ def install_oh_my_zsh(dry_run: bool = True) -> None:
         print("Oh My Zsh is already installed.")
         return
 
-    command = [
+    clone_git = [
         "git",
         "clone",
         "--depth=1",
@@ -82,7 +82,14 @@ def install_oh_my_zsh(dry_run: bool = True) -> None:
         str(destination),
     ]
 
-    run(command, dry_run=dry_run)
+    make_zsh_default = [
+        "chsh",
+        "-s",
+        "$(which zsh)",
+    ]
+
+    run(clone_git, dry_run=dry_run)
+    run(make_zsh_default, dry_run=dry_run)
 
 
 def configure_zsh(dry_run: bool = True) -> None:

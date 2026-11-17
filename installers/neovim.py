@@ -27,19 +27,17 @@ def install_neovim(dry_run: bool = True) -> None:
     Install Neovim 0.12.6
     """
 
-    destination = Path.home() / "/.local/bin/"
     git_repo = "https://github.com/neovim/neovim"
 
     clone_repo = [
         "git",
         "clone",
         git_repo,
-        str(destination),
     ]
 
     change_directory = [
         "cd",
-        str(destination),
+        "neovim",
     ]
 
     make = [
