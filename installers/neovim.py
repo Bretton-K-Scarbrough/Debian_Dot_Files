@@ -39,7 +39,7 @@ def install_neovim(dry_run: bool = True) -> None:
 
     change_directory = [
         "cd",
-        destination,
+        str(destination),
     ]
 
     make = [
