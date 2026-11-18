@@ -85,7 +85,7 @@ def install_oh_my_zsh(dry_run: bool = True) -> None:
     make_zsh_default = [
         "chsh",
         "-s",
-        "$(which zsh)",
+        '"$(which zsh)"',
     ]
 
     run(clone_git, dry_run=dry_run)
