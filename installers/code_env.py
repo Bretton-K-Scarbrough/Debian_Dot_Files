@@ -63,7 +63,7 @@ def setup_neovim(dry_run: bool = True) -> None:
     command_list = []
 
     install_rust = command_list.append(
-        "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+        """bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh" """
     )
     install_tree_sitter = command_list.append("cargo install tree-sitter-cli")
 
@@ -98,12 +98,8 @@ def setup_python_env(dry_run: bool = True) -> None:
         f"{python} -m pip install {' '.join(libraries)}"
     )
 
-    print(venvs_directory)
-    print(f"mkdir -p {venvs_directory}")
-    print(f"source {activate_directory}")
-
-    # for command in command_list:
-    #     run(command, dry_run)
+    for command in command_list:
+        run(command, dry_run)
 
 
 def setup_code_env(dry_run: bool = True) -> None:
