@@ -22,22 +22,28 @@ SYSTEM_FONT_DIR = Path.home() / ".local/share/fonts"
 HOME = Path.home()
 
 
-def run(command: list[str], dry_run: bool = False) -> None:
+def run(command: str, dry_run: bool = False) -> None:
     """
-    Exectuse a system command.
+    Executes a system command.
 
     Args:
         command (list[str]): List of commands to be exectured.
         dry_run (bool): Determines if the set of commands is a "practice run",
         it wont delete or modify files if this is set to true.
     """
+    split_command = shlex.split(command)
 
     print(
-        f"{shlex.join(command)}", flush=True
+        f"{shlex.join(split_command)}", flush=True
     )  # Prints command to terminal and runs it.
 
-    if not dry_run:
-        subprocess.run(command, check=True)  # shows error if it occurs
+    if dry_run:
+        return
+
+    if split_command[0] == "cd":
+        os.chdir(split_command[1])
+    else:
+        subprocess.run(split_command, check=True)  # shows error if it occurs
 
 
 def check_system() -> None:
@@ -74,19 +80,10 @@ def install_oh_my_zsh(dry_run: bool = True) -> None:
         print("Oh My Zsh is already installed.")
         return
 
-    clone_git = [
-        "git",
-        "clone",
-        "--depth=1",
-        "https://github.com/ohmyzsh/ohmyzsh.git",
-        str(destination),
-    ]
-
-    make_zsh_default = [
-        "chsh",
-        "-s",
-        '"$(which zsh)"',
-    ]
+    clone_git = (
+        f"git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git {str(destination)}"
+    )
+    make_zsh_default = f'chsh -s "$(which zsh)"'
 
     run(clone_git, dry_run=dry_run)
     run(make_zsh_default, dry_run=dry_run)
@@ -109,13 +106,7 @@ def configure_zsh(dry_run: bool = True) -> None:
         print("Zsh is already the default login shell.")
         return
 
-    command = [
-        "chsh",
-        "-s",
-        zsh,
-    ]
-
-    run(command, dry_run=dry_run)
+    run(f"chsh -s {zsh}", dry_run=dry_run)
 
 
 def load_packages() -> list[str]:
@@ -157,8 +148,8 @@ def install_packages(packages: list[str], dry_run: bool) -> None:
         print("Would install", ", ".join(packages))
         return
 
-    run(["sudo", "apt-get", "update"])
-    run(["sudo", "apt-get", "install", *packages])
+    run("sudo apt-get update")
+    run(f"sudo apt-get install {' '.join(packages)}")
 
 
 def deploy_dotfiles(modules: list[str], dry_run: bool) -> None:
@@ -181,7 +172,7 @@ def deploy_dotfiles(modules: list[str], dry_run: bool) -> None:
         *modules,
     ]
 
-    run([command[0], "--simulate", *command[1:]])
+    command = f"stow --verbose --no-folding --dir {str(STOW_DIR)} --target {str(HOME)} {' '.join(modules)}"
 
     if not dry_run:
         run(command)
@@ -219,8 +210,7 @@ def install_fonts(dry_run: bool = False) -> None:
 
 
 def configure_bluetooth(dry_run: bool = True) -> None:
-    command = ["sudo", "systemctl", "enable", "--now", "bluetooth"]
-
+    command = "sudo systemctl enable --now bluetooth"
     run(command, dry_run=dry_run)
 
 

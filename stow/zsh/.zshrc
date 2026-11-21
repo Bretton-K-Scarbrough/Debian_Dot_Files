@@ -142,11 +142,15 @@ zle -N zle-line-init
 
 export PATH="$HOME/Documents/Scripts/bash:$PATH"
 
-manim-env() {
-  cd ~/Documents/Manim/ || return 
-  source .venv/bin/activate
-}
+# manim-env() {
+#  cd ~/Documents/Manim/ || return 
+#   source .venv/bin/activate
+# }
 
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init - zsh)"
+
+if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+  exec startx
+fi
