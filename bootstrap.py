@@ -263,11 +263,12 @@ if __name__ == "__main__":
     install_packages(packages, dry_run=dry_run)
     install_fonts(dry_run=dry_run)
     install_oh_my_zsh(dry_run)
-    install_neovim(dry_run)
-    install_flatpaks(dry_run)
-
-    deploy_dotfiles(modules, dry_run=dry_run)
-    configure_bluetooth(dry_run)
+    # configure_zsh(dry_run)
+    # install_neovim(dry_run)
+    # install_flatpaks(dry_run)
+    #
+    # deploy_dotfiles(modules, dry_run=dry_run)
+    # configure_bluetooth(dry_run)
 
     if dry_run:
         print("Dry run complete. No changes made.")

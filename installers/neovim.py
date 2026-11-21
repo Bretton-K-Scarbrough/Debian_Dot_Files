@@ -38,10 +38,10 @@ def install_neovim(dry_run: bool = True) -> None:
     command_list = []
 
     git_repo = "https://github.com/neovim/neovim"
-    src_directory = HOME / "usr/local/src/"
+    src_directory = HOME / "usr/local/src/neovim"
 
     clone_repo = command_list.append(f"git clone {git_repo} {src_directory}")
-    change_directory = command_list.append(f"cd {src_directory / 'neovim'}")
+    change_directory = command_list.append(f"cd {src_directory}")
     make = command_list.append("make CMAKE_BUILD_TYPE=RelWithDebInfo")
     install = command_list.append("sudo make install")
 
