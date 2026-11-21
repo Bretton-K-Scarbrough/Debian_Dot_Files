@@ -104,7 +104,7 @@ def configure_zsh(dry_run: bool = True) -> None:
         print("Zsh is already the default login shell.")
         return
 
-    run(f"chsh -s ($which zsh)", dry_run=dry_run)
+    run(f"chsh -s {shutil.which('zsh')}", dry_run=dry_run)
 
 
 def load_packages() -> list[str]:
