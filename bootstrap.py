@@ -159,16 +159,16 @@ def deploy_dotfiles(modules: list[str], dry_run: bool) -> None:
         print("No Stow modules found.")
         return
 
-    command = [
-        "stow",
-        "--verbose",
-        "--no-folding",
-        "--dir",
-        str(STOW_DIR),
-        "--target",
-        str(HOME),
-        *modules,
-    ]
+    # command = [
+    #     "stow",
+    #     "--verbose",
+    #     "--no-folding",
+    #     "--dir",
+    #     str(STOW_DIR),
+    #     "--target",
+    #     str(HOME),
+    #     *modules,
+    # ]
 
     command = f"stow --verbose --no-folding --dir {str(STOW_DIR)} --target {str(HOME)} {' '.join(modules)}"
 
