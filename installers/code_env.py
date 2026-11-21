@@ -85,18 +85,25 @@ def setup_python_env(dry_run: bool = True) -> None:
         "pandas",
     ]
 
-    venvs_directory = HOME / "/.venvs"
+    venvs_directory = Path.home() / ".venvs"
     global_venv_directory = venvs_directory / "global"
-    activate_directory = global_venv_directory / "/bin/activate"
+    activate_directory = global_venv_directory / "bin/activate"
+    python = global_venv_directory / "bin/python"
 
     create_directory = command_list.append(f"mkdir -p {venvs_directory}")
     create_venv = command_list.append(f"python3 -m venv {global_venv_directory}")
-    source_venv = command_list.append(f"source {activate_directory}")
-    install_pip = command_list.append("python -m pip install --upgrade pip")
-    install_libraries = command_list.append(f"pip install {' '.join(libraries)}")
+    # source_venv = command_list.append(f"source {activate_directory}")
+    install_pip = command_list.append(f"{python} -m pip install --upgrade pip")
+    install_libraries = command_list.append(
+        f"{python} -m pip install {' '.join(libraries)}"
+    )
 
-    for command in command_list:
-        run(command, dry_run)
+    print(venvs_directory)
+    print(f"mkdir -p {venvs_directory}")
+    print(f"source {activate_directory}")
+
+    # for command in command_list:
+    #     run(command, dry_run)
 
 
 def setup_code_env(dry_run: bool = True) -> None:
