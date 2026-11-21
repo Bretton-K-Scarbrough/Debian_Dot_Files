@@ -10,7 +10,7 @@ import pwd
 from pathlib import Path
 from pprint import pprint
 from sys import path_importer_cache
-from installers.neovim import install_neovim
+from installers.code_env import setup_code_env
 from installers.flatpak import install_flatpaks
 
 
@@ -264,7 +264,7 @@ if __name__ == "__main__":
     install_fonts(dry_run=dry_run)
     install_oh_my_zsh(dry_run)
     configure_zsh(dry_run)
-    install_neovim(dry_run)
+    setup_code_env(dry_run)
     install_flatpaks(dry_run)
 
     deploy_dotfiles(modules, dry_run=dry_run)
