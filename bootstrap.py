@@ -83,10 +83,8 @@ def install_oh_my_zsh(dry_run: bool = True) -> None:
     clone_git = (
         f"git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git {str(destination)}"
     )
-    make_zsh_default = f'chsh -s "$(which zsh)"'
 
     run(clone_git, dry_run=dry_run)
-    run(make_zsh_default, dry_run=dry_run)
 
 
 def configure_zsh(dry_run: bool = True) -> None:
