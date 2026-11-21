@@ -4,6 +4,8 @@ import os
 import shlex
 import subprocess
 
+HOME = Path.home()
+
 
 def run(command: str, dry_run: bool = False) -> None:
     """
@@ -36,9 +38,10 @@ def install_neovim(dry_run: bool = True) -> None:
     command_list = []
 
     git_repo = "https://github.com/neovim/neovim"
+    src_directory = HOME / "usr/local/src/"
 
-    clone_repo = command_list.append(f"git clone {git_repo} /usr/local/src/")
-    change_directory = command_list.append("cd /usr/src/neovim")
+    clone_repo = command_list.append(f"git clone {git_repo} {src_directory}")
+    change_directory = command_list.append(f"cd {src_directory / 'neovim'}")
     make = command_list.append("make CMAKE_BUILD_TYPE=RelWithDebInfo")
     install = command_list.append("sudo make install")
 
