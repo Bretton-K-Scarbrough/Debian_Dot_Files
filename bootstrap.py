@@ -270,7 +270,9 @@ if __name__ == "__main__":
     deploy_dotfiles(modules, dry_run=dry_run)
     configure_bluetooth(dry_run)
 
+    run("sudo dpkg-reconfigure sddm")
+
     if dry_run:
         print("Dry run complete. No changes made.")
     else:
-        print("Bootstrap complete")
+        print("Bootstrap complete, please reboot.")

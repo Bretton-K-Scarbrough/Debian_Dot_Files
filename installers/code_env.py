@@ -62,9 +62,12 @@ def setup_neovim(dry_run: bool = True) -> None:
 
     command_list = []
 
+    cargo_directory = Path.home() / ".cargo/env"
+
     install_rust = command_list.append(
         """bash -c "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh" """
     )
+    source_cargo = f"source {cargo_directory}"
     install_tree_sitter = command_list.append("cargo install tree-sitter-cli")
 
     for command in command_list:

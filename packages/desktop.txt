@@ -3,8 +3,10 @@ xorg
 xinit
 
 # Window manager and keyboard shortcuts
-bspwm
-sxhkd
+# bspwm
+# sxhkd
+kde-standard
+sddm
 
 # Terminal and application launcher
 kitty
@@ -14,8 +16,8 @@ rofi
 feh
 
 # Screen locking 
-i3lock
-xss-lock
+# i3lock
+# xss-lock
 
 # File manager
 thunar
